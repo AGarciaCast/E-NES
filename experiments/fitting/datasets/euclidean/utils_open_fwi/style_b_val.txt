@@ -1,0 +1,14 @@
+/data/open_fwi/Style_B/model/model121.npy
+/data/open_fwi/Style_B/model/model122.npy
+/data/open_fwi/Style_B/model/model123.npy
+/data/open_fwi/Style_B/model/model124.npy
+/data/open_fwi/Style_B/model/model125.npy
+/data/open_fwi/Style_B/model/model126.npy
+/data/open_fwi/Style_B/model/model127.npy
+/data/open_fwi/Style_B/model/model128.npy
+/data/open_fwi/Style_B/model/model129.npy
+/data/open_fwi/Style_B/model/model130.npy
+/data/open_fwi/Style_B/model/model131.npy
+/data/open_fwi/Style_B/model/model132.npy
+/data/open_fwi/Style_B/model/model133.npy
+/data/open_fwi/Style_B/model/model134.npy

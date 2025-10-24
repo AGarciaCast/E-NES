@@ -1,0 +1,102 @@
+seed: 0
+device: None                              # Set to 'cpu' or 'cuda' to override automatic device selection
+
+logging:
+  log_dir: './experiments/fitting/logs'
+  log_every_n_steps: 50
+  visualize_every_n_steps: 1000
+  num_logged_samples: 4
+  checkpoint: True
+  debug: False
+
+
+
+# Space and latents configuration
+geometry:
+  input_space: 'Spherical'
+  group: 'SO-Perm' # Choises, 'SO', 'O', 'SO-Perm', 'O-Perm'
+  dim_signal: 3  # Hardcoded to 3 for the current datasets but some code also works for 2D
+  dim_orientation: 2 # Choises, 1 to dim_signal (2 in dim_signal=3 means z-axis invariants)
+  triv: 'vanilla' # "expm", "cayley", "projection"
+  latent_dim: 16
+  num_latents: 4
+  clip_pos: False
+  distance_type: 'ambient' # 'ambient' or 'geodesic' (for spherical space)
+  
+# Solver configuration
+solver:
+  num_hidden: 64
+  num_heads: 1
+  embedding_type: rff-net                        # Choices, 'linear', 'rff', 'polynomial', 
+  embedding_freq_multiplier_invariant: 0.05     # For SIREN this is the omega value, for RFF the 1/std and for polynomial the degree
+  embedding_freq_multiplier_value: 0.2        # For SIREN this is the omega value, for RFF the 1/std and for polynomial the degree
+
+# Eikonal equiation configuration
+eikonal:
+  factored: True
+  power: 2
+  hamiltonian: True
+
+  ground_truth:
+    active: True
+    skip_r: 1
+    skip_s: 5
+    num_visualized: 2 # So far no visualization for spherical space
+    save_data: True
+    force_recompute: False
+
+# Data configuration
+data:
+  base_dataset:
+    name: 'homogenous'
+    num_signals_train: 500
+    num_signals_val: 100
+    num_signals_test: 100
+    # Parameters for synthetic dataset
+    size: 32
+    vmin_train: 0.1
+    vmax_train: 2.0
+    vmin_test: 0.1
+    vmax_test: 2.0
+  
+  # Coordinate dataloader config
+  train_batch_size: 8
+  test_batch_size: 8
+  n_coords: 20480 # same as NES
+  num_pairs: 5120 # n_coords/ (batch_size*4)
+  x_min: Null
+  x_max: Null
+  num_workers: 0
+  pin_memory: False
+  train_save_data: True
+  train_force_recompute: True
+  val_save_data: True
+  val_force_recompute: True
+  test_save_data: True
+  test_force_recompute: True
+
+# Training configuration
+training:
+  num_epochs: 3000
+  early_stopping: True
+  gradient_clip_val: 1.0
+
+
+# Testing configuration
+test:
+  val_every_n_epochs: 100
+  num_epochs_auto: 100
+  min_num_epochs: 1
+
+# Optimization configuration
+optimizer:
+  name: adamw
+  learning_rate_solver: 1e-4
+  learning_rate_codes: 1e-2
+  learning_rate_poses: 1e-3
+  weight_decay: 0.0
+
+visualization:
+  active: True # So far no visualization for spherical space
+  max_num_visualized_rec: 5
+  max_pairs_plot: 25

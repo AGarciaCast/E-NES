@@ -1,0 +1,124 @@
+seed: 0
+device: None                              # Set to 'cpu' or 'cuda' to override automatic device selection
+
+logging:
+  log_dir: './experiments/fitting/logs'
+  log_every_n_steps: 50
+  visualize_every_n_steps: 1000
+  num_logged_samples: 4
+  checkpoint: True
+  debug: False
+
+# Space and latents configuration
+geometry:
+  input_space: 'Euclidean'
+  group: 'SE-Perm' # Choises, 'SE', 'E', 'SE-Perm', 'E-Perm'Trans-Perm
+  dim_signal: 3 # Choises, 2 or 3
+  dim_orientation: 3 # Choises, 0 to dim_signal
+  triv: 'vanilla' # "expm", "cayley", "projection"
+  latent_dim: 32
+  num_latents: 8
+  clip_pos: True
+
+# Solver configuration
+solver:
+  num_hidden: 128
+  num_heads: 1
+  embedding_type: rff-net                        # Choices, 'linear', 'rff', 'polynomial', 
+  embedding_freq_multiplier_invariant: 0.05     # For SIREN this is the omega value, for RFF the 1/std and for polynomial the degree
+  embedding_freq_multiplier_value: 0.2    # For SIREN this is the omega value, for RFF the 1/std and for polynomial the degree
+
+
+eikonal:
+  factored: True
+  power: 2
+  hamiltonian: True
+  absolute: False
+
+  ground_truth:
+    active: False
+    skip_r: 1
+    skip_s: 35
+    num_visualized: 1
+    save_data: True
+    force_recompute: False
+
+# Data configuration
+data:
+  base_dataset:
+    # name: 'fwi_style_a'
+    # name: 'fwi_curvevel_a'
+    # name: 'fwi_flatvel_b'
+    # name: 'fwi_curvevel_b'
+    name: 'fwi_style_b'
+    # name: 'fwi_flatfault_b'
+    # name: 'fwi_curvefault_b'
+    num_signals_train: 500
+    num_signals_val: 100
+    num_signals_test: 100
+    preload: True
+    create_3d: True
+  
+  # Coordinate dataloader config
+  train_batch_size: 2
+  test_batch_size: 2
+  n_coords: 20480  # 20480 num_coords / 2 / num_pairs should be divisible 
+  num_pairs: 5120 # n_coords/ (batch_size*4)
+  x_min: [-1.0, -1.0, -1.0]
+  x_max: [1.0, 1.0, 1.0]
+  num_workers: 0
+  pin_memory: True
+  train_save_data: True
+  train_force_recompute: False
+  val_save_data: True
+  val_force_recompute: False
+  test_save_data: True
+  test_force_recompute: False
+
+
+# Training configuration
+training:
+  num_epochs: 500
+  gradient_clip_val: 1.0
+  wandbref: '76p75077'
+
+
+# Testing configuration
+test:
+  val_every_n_epochs: 100
+
+
+# Optimization configuration
+optimizer:
+  learning_rate_solver: 1e-4
+  learning_rate_codes: 0
+  learning_rate_poses: 0
+  lr_scheduler:
+    activate: True
+    min_lr_factor: 0.01
+    warmup_steps: 0 
+    lr_scheduler_freq: 1
+  
+
+meta:
+  inner_optimizer: sgd
+  inner_learning_rate_solver: 0
+  inner_learning_rate_codes:  30  #5 1e-2 
+  inner_learning_rate_poses: 2  #1 1e-3 
+  learning_rate_meta_sgd: 1e-4
+  noise_pos_inner_loop: 0.0
+  num_inner_steps: 3
+  num_pairs: 5120 # 10240
+  reptile:
+    enable: False
+    weight_temperature: 1
+  
+  lr_schedule_type: constant
+  initial_lr_factor: 1
+  final_lr_factor: 0.01
+  lr_decay_rate: 0.9
+
+visualization:
+  active: False
+  max_num_visualized_rec: 5
+  max_pairs_plot: 25

@@ -1,0 +1,1 @@
+from equiv_eikonal.models.enf import EquivariantNeuralField

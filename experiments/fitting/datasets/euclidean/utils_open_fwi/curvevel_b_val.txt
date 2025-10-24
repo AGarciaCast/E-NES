@@ -1,0 +1,12 @@
+/data/open_fwi/CurveVel_B/model/model49.npy
+/data/open_fwi/CurveVel_B/model/model50.npy
+/data/open_fwi/CurveVel_B/model/model51.npy
+/data/open_fwi/CurveVel_B/model/model52.npy
+/data/open_fwi/CurveVel_B/model/model53.npy
+/data/open_fwi/CurveVel_B/model/model54.npy
+/data/open_fwi/CurveVel_B/model/model55.npy
+/data/open_fwi/CurveVel_B/model/model56.npy
+/data/open_fwi/CurveVel_B/model/model57.npy
+/data/open_fwi/CurveVel_B/model/model58.npy
+/data/open_fwi/CurveVel_B/model/model59.npy
+/data/open_fwi/CurveVel_B/model/model60.npy
