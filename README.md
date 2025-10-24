@@ -2,7 +2,7 @@
 This repository contains the code for the paper called **"Equivariant Eikonal Neural Networks: Grid-Free, Scalable Travel-Time Prediction on Homogeneous Spaces"**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![jax_badge][jax_badge_link]](https://github.com/google/jax)
 [![badge](https://img.shields.io/badge/ArXiv-2406.06660-b31b1b?logo=arxiv&logoColor=b31b1b)](https://arxiv.org/abs/2505.16035)
 
